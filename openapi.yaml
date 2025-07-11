@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: WHOIS Lookup API
+  description: Returns WHOIS information for a given IP address or hostname.
+  version: 1.1.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /whois:
+    get:
+      summary: Get WHOIS information
+      description: Returns WHOIS information for a given IP or hostname.
+      parameters:
+        - in: query
+          name: target
+          schema:
+            type: string
+          required: true
+          description: IP address or hostname to look up
+      responses:
+        '200':
+          description: WHOIS information retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  target:
+                    type: string
+                  result:
+                    type: string
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+  /whois/batch:
+    post:
+      summary: Get WHOIS information for multiple targets
+      description: Returns WHOIS information for a list of IPs or hostnames.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: WHOIS information retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    target:
+                      type: string
+                    result:
+                      type: string
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
