@@ -2,6 +2,9 @@
 Ever needed a simple way to get information about an IP in JSON format?
 This is a simple service to return Whois and ASN information about IPs passed.
 
+# disclaimer
+I am not a very good go developer, but I needed this. Suggestions and corretions are always welcome.
+
 ## building blocks
 Based on 
 * whois - [github.com/likexian/whois](https://github.com/likexian/whois)
